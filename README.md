@@ -166,6 +166,10 @@ let frank = Person.create({
 })
 
 frank.sayHello(); // "Hi, my name is Frank"
+// correct form
+frank.get('sayHello').call(frank);
+//The below returns the function
+frank.get('sayHello')();
 ```
 
 To create a new sub-Class based on the Person (Ember) Class we've just defined,
@@ -235,6 +239,27 @@ Create a new Dog object with name 'Jellybeans' and age '7', and call
  Jellybeans's `bark` method.
 Finally, rerun your script in the console.
 Did it work correctly?
+```js
+const Pet = Ember.Object.extend({
+  sayName: function(){
+    return `Hi, my name is ${this.get('name')}`
+  },
+  age:5,
+  eat: function(){
+    return 'nom,nom,nom';
+  },
+  sleep: function(){
+    return 'zzz';
+  }
+});
+
+let bruce = Pet.create({
+  name: "Bruce",
+  age: 10
+})
+
+bruce.get('sayName').call(bruce);
+
 
 ## Computed Properties
 
